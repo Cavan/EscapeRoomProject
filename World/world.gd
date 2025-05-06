@@ -8,6 +8,8 @@ var async_loading_path:String
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_main_level()
+	var navigation = get_node("Navigation_Arrows")
+	navigation.navigation_arrow_clicked.connect(_on_navigation_action)
 	
 
 
@@ -25,12 +27,9 @@ func load_main_level() -> void:
 	#await get_tree().create_timer(1.0).timeout
 	add_child(current_level)
 
-func swap_scenes() -> void:
-	pass
-	
-
-func mouse_over_ui() -> void:
-	pass
+func _on_navigation_action(direction:String):
+	print("Click Signal Detected")
+	print(direction)
 
 
 
