@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc70cbko44b3v"]
+[gd_scene load_steps=4 format=3 uid="uid://cc70cbko44b3v"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_aq7k1"]
 [ext_resource type="PackedScene" uid="uid://dp2v0vvwacf7r" path="res://UI/navigation_arrows.tscn" id="2_ijtix"]
+[ext_resource type="PackedScene" uid="uid://c1bwtupcf2ral" path="res://UI/loading_screen.tscn" id="3_prefl"]
 
 [node name="World" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_aq7k1")
 main_level_path = "res://Levels/level_1.tscn"
+level_2_path = "res://Levels/level_2.tscn"
+level_3_path = "res://Levels/level_3.tscn"
 
 [node name="Navigation_Arrows" parent="." instance=ExtResource("2_ijtix")]
 position = Vector2(21, 0)
@@ -27,4 +30,8 @@ position = Vector2(1818, 493)
 [node name="Right_Arrow" parent="Navigation_Arrows/Area2D_Right_Arrow" index="0"]
 position = Vector2(-3, -2)
 
+[node name="Loading_Screen" parent="." instance=ExtResource("3_prefl")]
+layout_mode = 1
+
 [editable path="Navigation_Arrows"]
+[editable path="Loading_Screen"]
