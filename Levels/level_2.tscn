@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cksnfgrmm7loh"]
+
+[ext_resource type="Texture2D" uid="uid://6djcs0gcmh3b" path="res://Assets/Rooms/OperatingTable.jpeg" id="1_c0vq4"]
+
+[node name="Level_2" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 2041.0
+offset_bottom = 1118.0
+texture = ExtResource("1_c0vq4")
+expand_mode = 3
+stretch_mode = 4

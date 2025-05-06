@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhxbq0yujg68c"]
+
+[ext_resource type="Texture2D" uid="uid://yv57nyve3ra1" path="res://Assets/Rooms/OperatingRoom_3.png" id="1_jovak"]
+
+[node name="Level_3" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 2041.0
+offset_bottom = 1118.0
+texture = ExtResource("1_jovak")
+expand_mode = 3
+stretch_mode = 4

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://7tgwji88ukab"]
+
+[ext_resource type="Texture2D" uid="uid://kmpehaxm6s84" path="res://Assets/Rooms/OperatingRoom_2.png" id="1_6fvfx"]
+
+[node name="Level_1" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 2041.0
+offset_bottom = 1118.0
+texture = ExtResource("1_6fvfx")
+expand_mode = 3
+stretch_mode = 4

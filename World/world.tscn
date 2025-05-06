@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc70cbko44b3v"]
+
+[ext_resource type="Script" path="res://World/world.gd" id="1_aq7k1"]
+[ext_resource type="PackedScene" uid="uid://dp2v0vvwacf7r" path="res://UI/navigation_arrows.tscn" id="2_ijtix"]
+
+[node name="World" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_aq7k1")
+main_level_path = "res://Levels/level_1.tscn"
+
+[node name="Navigation_Arrows" parent="." instance=ExtResource("2_ijtix")]
+position = Vector2(21, 0)
+
+[node name="Area2D_Left_Arrow" parent="Navigation_Arrows" index="0"]
+position = Vector2(64, 480)
+
+[node name="Left_Arrow" parent="Navigation_Arrows/Area2D_Left_Arrow" index="0"]
+position = Vector2(-3, 1)
+
+[node name="CollisionShape2D" parent="Navigation_Arrows/Area2D_Left_Arrow" index="1"]
+position = Vector2(0, 2)
+
+[node name="Area2D_Right_Arrow" parent="Navigation_Arrows" index="1"]
+position = Vector2(1818, 493)
+
+[node name="Right_Arrow" parent="Navigation_Arrows/Area2D_Right_Arrow" index="0"]
+position = Vector2(-3, -2)
+
+[editable path="Navigation_Arrows"]
