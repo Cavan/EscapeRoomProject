@@ -15,6 +15,12 @@ run/main_scene="res://World/world.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[debug]
+
+file_logging/enable_file_logging=true
+file_logging/log_path="V:\\Godot_Logging\\EscapeRoomLogs\\EscapeRoom.log"
+file_logging/max_log_files=10
+
 [display]
 
 window/size/viewport_width=1920

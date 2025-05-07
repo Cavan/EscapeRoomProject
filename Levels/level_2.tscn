@@ -5,7 +5,7 @@
 [node name="Level_2" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 0
+layer = -1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 offset_right = 2041.0

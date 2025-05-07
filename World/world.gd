@@ -3,6 +3,7 @@ extends Control
 @export var main_level_path:String
 @export var level_2_path:String
 @export var level_3_path:String
+@export var level_paths:Array[String]
 
 @onready var loading_display:CanvasLayer = $Loading_Screen/LoadingDisplay
 
@@ -32,7 +33,7 @@ func _process(delta):
 
 
 func load_main_level() -> void:
-	async_loading_path = main_level_path
+	async_loading_path = level_paths[0]
 	current_map_path = async_loading_path
 	print(ResourceLoader.load_threaded_get_status(async_loading_path))
 	ResourceLoader.load_threaded_request(async_loading_path)
@@ -57,11 +58,24 @@ func navigate_to_previous_map() -> void:
 
 func animated_scene_swap_loader() -> void:
 	var new_map
-	if (current_map_path == main_level_path):
-		async_loading_path = level_2_path
-	elif async_loading_path == level_2_path:
-		async_loading_path = level_3_path
-	
+	var number_of_levels = level_paths.size()
+	var current_level_index = level_paths.find(async_loading_path)
+	# Refactoring
+	if current_level_index + 1 < number_of_levels:
+		print("We can advance")
+	elif current_level_index + 1 == number_of_levels:
+		print("We must wrap around back to the beginning.")
+		
+	# Refactoring		
+		
+	var timestamp:String = Time.get_datetime_string_from_system()
+	if (async_loading_path == level_paths[0]):
+		async_loading_path = level_paths[1]
+	elif async_loading_path == level_paths[1]:
+		async_loading_path = level_paths[2]
+	elif async_loading_path == level_paths[2]:
+		async_loading_path = level_paths[0]
+	print("[%s] current set path: %s" % [timestamp, async_loading_path])
 	var tween = create_tween().tween_property(current_level, "modulate:a", 0, 0.5)
 	
 	await tween.finished
@@ -75,6 +89,8 @@ func animated_scene_swap_loader() -> void:
 
 func change_current_map() -> void:
 	if (ResourceLoader.load_threaded_get_status(async_loading_path) == ResourceLoader.THREAD_LOAD_LOADED):
+			var timestamp:String = Time.get_datetime_string_from_system()
+			print("[%s]Next map to load: %s" % [timestamp,async_loading_path])
 			current_level = ResourceLoader.load_threaded_get(async_loading_path).instantiate()
 			await get_tree().create_timer(1.0).timeout
 			add_child(current_level)
