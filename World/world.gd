@@ -12,7 +12,9 @@ const RIGHT_NAV_ARROW_CLICKED:String = "RIGHT_NAV_ARROW_CLICKED"
 const NEXT_SCENE:int = 1
 const PREVIOUS_SCENE:int = -1
 const BEGINNING_SCENE:int = 0
+const SCENE_INCREMENT:int = 1
 const ADD_ONE_TO_ZERO_BASED_INDEX = 1
+const SUBTRACT_ONE_FROM_ARRAY_SIZE = 1
 
 var async_loading_path:String
 var current_map_path:String
@@ -26,14 +28,11 @@ func _ready():
 	loading_display.visible = false
 	
 	
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if loading_display:
 		# advance to the next map
 		change_current_map()
-
 
 
 func load_main_level() -> void:
@@ -45,40 +44,18 @@ func load_main_level() -> void:
 	#await get_tree().create_timer(1.0).timeout
 	add_child(current_level)
 
+
 func _on_navigation_action(direction:String):
 	print("Click Signal Detected")
 	print(direction)
 	if direction == LEFT_NAV_ARROW_CLICKED:
-		navigate_to_previous_map()
+		animated_scene_swap_loader(get_level_path(PREVIOUS_SCENE))
 	if direction == RIGHT_NAV_ARROW_CLICKED:
-		navigate_to_next_map()
+		animated_scene_swap_loader(get_level_path(NEXT_SCENE))
 
-func navigate_to_next_map() -> void:
-	print("Navigating: GO FORWARD")
-	animated_scene_swap_loader(NEXT_SCENE)
-	
-func navigate_to_previous_map() -> void:
-	print("Navigating: GO BACKWARD")
-	animated_scene_swap_loader(PREVIOUS_SCENE)
 
-func animated_scene_swap_loader(direction:int) -> void:
-	var new_map
-	var number_of_levels = level_paths.size()
-	var current_level_index = level_paths.find(async_loading_path)
-	
-	if direction > 0:
-		print("Current level Index: %s" % [current_level_index])
-		if current_level_index + ADD_ONE_TO_ZERO_BASED_INDEX < number_of_levels:
-			print("We can advance")
-			current_level_index += NEXT_SCENE
-		elif current_level_index + ADD_ONE_TO_ZERO_BASED_INDEX == number_of_levels:
-			print("We must wrap around back to the beginning.")
-			current_level_index = 0
-	if direction < 0:
-		# Add the previous scenen code here.
-		pass
-	async_loading_path = level_paths[current_level_index]
-		
+func animated_scene_swap_loader(scene_path:String) -> void:
+	async_loading_path = scene_path		
 	var timestamp:String = Time.get_datetime_string_from_system()
 	print("[%s] current set path: %s" % [timestamp, async_loading_path])
 	var tween = create_tween().tween_property(current_level, "modulate:a", 0, 0.5)
@@ -87,6 +64,7 @@ func animated_scene_swap_loader(direction:int) -> void:
 	
 	remove_child(current_level)
 	ResourceLoader.load_threaded_request(async_loading_path)
+	
 
 func change_current_map() -> void:
 	if (ResourceLoader.load_threaded_get_status(async_loading_path) == ResourceLoader.THREAD_LOAD_LOADED):
@@ -102,6 +80,23 @@ func change_current_map() -> void:
 			await tween.finished
 
 
-
-
-
+func get_level_path(direction:int) -> String:
+	var number_of_levels = level_paths.size()
+	var current_level_index = level_paths.find(async_loading_path)
+	if direction > 0:
+		print("Current level Index: %s" % [current_level_index])
+		if current_level_index + ADD_ONE_TO_ZERO_BASED_INDEX < number_of_levels:
+			print("We can advance")
+			current_level_index += SCENE_INCREMENT
+		elif current_level_index + ADD_ONE_TO_ZERO_BASED_INDEX == number_of_levels:
+			print("We must wrap around back to the beginning.")
+			current_level_index = 0
+	if direction < 0:
+		print("Current level Index: %s" % [current_level_index])
+		if current_level_index + ADD_ONE_TO_ZERO_BASED_INDEX > 1:
+			print("We can go backward")
+			current_level_index -= SCENE_INCREMENT
+		elif current_level_index + ADD_ONE_TO_ZERO_BASED_INDEX == number_of_levels - level_paths.size() + 1:
+			print("We must wrap around to the end.")
+			current_level_index = level_paths.size() - SCENE_INCREMENT
+	return level_paths[current_level_index]

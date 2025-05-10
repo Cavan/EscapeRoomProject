@@ -20,6 +20,7 @@ func _ready():
 func _process(delta):
 	pass
 
+
 func _on_area_2d_left_arrow_mouse_entered():
 		print("Left Nav Arrow Entered")
 		left_nav_arrow.self_modulate = Color.CHARTREUSE
