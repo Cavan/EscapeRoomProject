@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://yea2ouo1w0ni"]
+
+[ext_resource type="Script" path="res://Inventory/item.gd" id="2_w305j"]
+
+[node name="DragableItem" type="Sprite2D"]
+top_level = true
+position = Vector2(1037, 545)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("2_w305j")

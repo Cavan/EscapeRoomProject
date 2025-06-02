@@ -11,7 +11,7 @@ script = ExtResource("1_aq7k1")
 main_level_path = "res://Levels/level_1.tscn"
 level_2_path = "res://Levels/level_2.tscn"
 level_3_path = "res://Levels/level_3.tscn"
-level_paths = ["res://Levels/level_1.tscn", "res://Levels/level_2.tscn", "res://Levels/level_3.tscn"]
+level_paths = Array[String](["res://Levels/level_1.tscn", "res://Levels/level_2.tscn", "res://Levels/level_3.tscn"])
 
 [node name="Navigation_Arrows" parent="." instance=ExtResource("2_ijtix")]
 position = Vector2(21, 0)

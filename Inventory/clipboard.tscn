@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnm5au0p5nhg"]
+
+[ext_resource type="Texture2D" uid="uid://bqe0mcclrjeye" path="res://Assets/Items/clipboard.png" id="1_o01ks"]
+[ext_resource type="Script" path="res://Inventory/item.gd" id="2_w8kli"]
+
+[node name="Clipboard" type="Sprite2D"]
+position = Vector2(1037, 545)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_o01ks")
+script = ExtResource("2_w8kli")

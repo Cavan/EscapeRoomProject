@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqwjabdx3dw56"]
+
+[ext_resource type="Texture2D" uid="uid://bqe0mcclrjeye" path="res://Assets/Items/clipboard.png" id="1_m2lwo"]
+[ext_resource type="PackedScene" uid="uid://yea2ouo1w0ni" path="res://Inventory/DragableItem.tscn" id="2_8nm65"]
+[ext_resource type="Texture2D" uid="uid://im4f1r7bqgqg" path="res://Assets/Items/biohazard.png" id="3_lmxc3"]
+[ext_resource type="Texture2D" uid="uid://dkt1sfujm7ptr" path="res://Assets/Items/Nurse.png" id="4_u4i1y"]
+[ext_resource type="Texture2D" uid="uid://dv00qct7is4u4" path="res://Assets/Items/TIME OUT.png" id="5_shb2b"]
+
+[node name="Item" type="Node2D"]
+position = Vector2(959, 640)
+
+[node name="DragableItem" parent="." instance=ExtResource("2_8nm65")]
+position = Vector2(1726, 917)
+item_sprite_texture = ExtResource("3_lmxc3")
+
+[node name="DragableItem2" parent="." instance=ExtResource("2_8nm65")]
+position = Vector2(254, 211)
+scale = Vector2(0.25, 0.25)
+item_sprite_texture = ExtResource("4_u4i1y")
+
+[node name="DragableItem3" parent="." instance=ExtResource("2_8nm65")]
+position = Vector2(289, 853)
+item_sprite_texture = ExtResource("1_m2lwo")
+
+[node name="DragableItem4" parent="." instance=ExtResource("2_8nm65")]
+position = Vector2(1726, 170)
+item_sprite_texture = ExtResource("5_shb2b")

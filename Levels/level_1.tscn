@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://7tgwji88ukab"]
+[gd_scene load_steps=3 format=3 uid="uid://7tgwji88ukab"]
 
 [ext_resource type="Texture2D" uid="uid://kmpehaxm6s84" path="res://Assets/Rooms/OperatingRoom_2.png" id="1_6fvfx"]
+[ext_resource type="PackedScene" uid="uid://bqwjabdx3dw56" path="res://Inventory/item.tscn" id="2_scs8p"]
 
 [node name="Level_1" type="Node2D"]
 
@@ -13,3 +14,15 @@ offset_bottom = 1118.0
 texture = ExtResource("1_6fvfx")
 expand_mode = 3
 stretch_mode = 4
+
+[node name="Item" parent="." instance=ExtResource("2_scs8p")]
+position = Vector2(595, 649)
+
+[node name="DragableItem" parent="Item" index="0"]
+position = Vector2(897, 455)
+
+[node name="DragableItem2" parent="Item" index="1"]
+position = Vector2(1144, 603)
+scale = Vector2(0.2, 0.2)
+
+[editable path="Item"]
